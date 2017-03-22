@@ -60,7 +60,12 @@ gulp.task('all', function () {
     return gulp.src(
         [
             path.join(conf.paths.src, 'threejs/*.js'),
-            path.join(conf.paths.src, '**/*.js')
+            path.join(conf.paths.src, 'tween.js'),
+            path.join(conf.paths.src, 'OrbitControls.js'),
+            path.join(conf.paths.src, 'ng-sortable.js'),
+            path.join(conf.paths.src, 'semicircle.js'),
+            path.join(conf.paths.src, 'socket.io.js'),
+            path.join(conf.paths.src, 'L.Path.Transform-src.js')
 
         ])
         .pipe($.concat('imsv_libs.js'))
