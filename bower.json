@@ -1,0 +1,19 @@
+{
+  "name": "imsv-lib",
+  "version": "1.0.0",
+  "description": "All libraries used by IMSV",
+  "license": "IMSV",
+  "main": "dist/imsv_libs.js",
+  "ignore": [
+    "/.*/",
+    "/test/",
+    "/.*",
+    "/bower.json",
+    "/karma.conf.js",
+    "/src"
+  ],
+  "keywords": [
+    "imsv libs",
+    "threejs only js"
+  ]
+}
