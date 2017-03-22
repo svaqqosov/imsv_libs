@@ -8,8 +8,8 @@
     "/.*/",
     "/test/",
     "/.*",
-    "/bower.json",
-    "/karma.conf.js",
+    "/gulp",
+    "/package.json",
     "/src"
   ],
   "keywords": [
