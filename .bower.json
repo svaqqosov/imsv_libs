@@ -1,6 +1,6 @@
 {
   "name": "imsv-lib",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "All libraries used by IMSV",
   "license": "IMSV",
   "main": "dist/imsv_libs.js",
@@ -17,12 +17,13 @@
     "threejs only js"
   ],
   "homepage": "imsv.io",
-  "_release": "1.0.0",
+  "_release": "1.0.1",
   "_resolution": {
     "type": "version",
-    "tag": "v1.0.0",
+    "tag": "v1.0.1",
     "commit": "07687acd2c08ef94e2d2c5fd97c4602432c750b0"
   },
   "_source": "git@github.com:svaqqosov/imsv_libs.git",
+  "_target": "^1.0.1",
   "_originalSource": "imsv-lib"
 }
