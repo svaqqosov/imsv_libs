@@ -1,6 +1,6 @@
 {
   "name": "imsv-lib",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "All libraries used by IMSV",
   "license": "IMSV",
   "main": "dist/imsv_libs.js",
