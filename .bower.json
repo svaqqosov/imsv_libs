@@ -21,7 +21,7 @@
   "_resolution": {
     "type": "version",
     "tag": "v1.0.0",
-    "commit": "402c9ee17bed6f273bcbc7efa81874fd9a50b84c"
+    "commit": "07687acd2c08ef94e2d2c5fd97c4602432c750b0"
   },
   "_source": "git@github.com:svaqqosov/imsv_libs.git",
   "_originalSource": "imsv-lib"
