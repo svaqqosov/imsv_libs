@@ -3,7 +3,7 @@
   "version": "1.0.1",
   "description": "All libraries used by IMSV",
   "license": "IMSV",
-  "main": "dist/imsv_libs.js",
+  "main": "dist/viewer_libs.js",
   "ignore": [
     "/.*/",
     "/test/",
