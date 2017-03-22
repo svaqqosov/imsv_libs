@@ -4,32 +4,95 @@
 var path = require('path');
 var gulp = require('gulp');
 var conf = require('./conf');
-//var mainBowerFiles2 = require('gulp-main-bower-files');
-//var mainBowerFiles = require('gulp-main-bower-files');
-
-var concat = require('gulp-concat');
 
 var $ = require('gulp-load-plugins')({
     pattern: ['gulp-*', 'main-bower-files', 'uglify-save-license', 'del']
 });
 
 
-gulp.task('concat', function () {
-    gulp.src([
-        path.join(conf.paths.src, '**/*.js')
-    ])
-        .pipe(concat('imsv_libs.js'))
+gulp.task('editor', function () {
+    return gulp.src(
+        [
+            path.join(conf.paths.src, 'threejs/*.js'),
+            path.join(conf.paths.src, 'OrbitControls.js'),
+            path.join(conf.paths.src, 'L.Path.Transform-src.js'),
+            path.join(conf.paths.src, 'ng-sortable.js'),
+            path.join(conf.paths.src, 'semicircle.js'),
+            path.join(conf.paths.src, 'socket.io.js')
+
+        ])
+        .pipe($.concat('editor_libs.js'))
         .pipe(gulp.dest(path.join(conf.paths.dist, '/'))
+            .on('end',function(){
+                gulp.src(path.join(conf.paths.dist, 'editor_libs.js'))
+                    .pipe($.uglify())
+                    .pipe($.concat('editor_libs.min.js'))
+                    .pipe(gulp.dest(path.join(conf.paths.dist, '/'))
+                );
+            })
     );
+
 });
 
-gulp.task('minify', function () {
-    gulp.src([
-        path.join(conf.paths.src, '**/*.js')
-    ])
-        .pipe(concat('imsv_libs.min.js'))
-        .pipe($.uglify())
+gulp.task('viewer', function () {
+    return gulp.src(
+        [
+            path.join(conf.paths.src, 'threejs/*.js'),
+            path.join(conf.paths.src, 'tween.js'),
+            path.join(conf.paths.src, 'OrbitControls.js'),
+            path.join(conf.paths.src, 'socket.io.js'),
+            path.join(conf.paths.src, 'heatmap.js')
+
+        ])
+        .pipe($.concat('viewer_libs.js'))
         .pipe(gulp.dest(path.join(conf.paths.dist, '/'))
+            .on('end',function(){
+                gulp.src(path.join(conf.paths.dist, 'viewer_libs.js'))
+                    .pipe($.uglify())
+                    .pipe($.concat('viewer_libs.min.js'))
+                    .pipe(gulp.dest(path.join(conf.paths.dist, '/'))
+                );
+            })
+    );
+
+});
+
+gulp.task('viewer2', function () {
+    return gulp.src(
+        [
+            path.join(conf.paths.src, 'socket.io.js'),
+            path.join(conf.paths.src, 'heatmap.js')
+
+        ])
+        .pipe($.concat('viewer_libs_no_three.js'))
+        .pipe(gulp.dest(path.join(conf.paths.dist, '/'))
+            .on('end',function(){
+                gulp.src(path.join(conf.paths.dist, 'viewer_libs_no_three.js'))
+                    .pipe($.uglify())
+                    .pipe($.concat('viewer_libs_no_three.min.js'))
+                    .pipe(gulp.dest(path.join(conf.paths.dist, '/'))
+                );
+            })
+    );
+
+});
+
+gulp.task('all', function () {
+    return gulp.src(
+        [
+            path.join(conf.paths.src, 'threejs/*.js'),
+            path.join(conf.paths.src, '**/*.js')
+
+        ])
+        .pipe($.concat('imsv_libs.js'))
+        .pipe(gulp.dest(path.join(conf.paths.dist, '/'))
+            .on('end',function(){
+                gulp.src(path.join(conf.paths.dist, 'imsv_libs.js'))
+                    .pipe($.uglify())
+                    .pipe($.concat('imsv_libs.min.js'))
+                    .pipe(gulp.dest(path.join(conf.paths.dist, '/'))
+                );
+            })
     );
 });
 
@@ -38,4 +101,4 @@ gulp.task('clean', function ()
     return $.del([path.join(conf.paths.dist, '/')]);
 });
 
-gulp.task('build', ['concat','minify']);
+gulp.task('build', ['all','editor','viewer','viewer2']);
