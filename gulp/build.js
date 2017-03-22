@@ -40,9 +40,7 @@ gulp.task('viewer', function () {
             path.join(conf.paths.src, 'threejs/*.js'),
             path.join(conf.paths.src, 'tween.js'),
             path.join(conf.paths.src, 'OrbitControls.js'),
-            path.join(conf.paths.src, 'socket.io.js'),
-            path.join(conf.paths.src, 'heatmap.js')
-
+            path.join(conf.paths.src, 'socket.io.js')
         ])
         .pipe($.concat('viewer_libs.js'))
         .pipe(gulp.dest(path.join(conf.paths.dist, '/'))
@@ -57,25 +55,6 @@ gulp.task('viewer', function () {
 
 });
 
-gulp.task('viewer2', function () {
-    return gulp.src(
-        [
-            path.join(conf.paths.src, 'socket.io.js'),
-            path.join(conf.paths.src, 'heatmap.js')
-
-        ])
-        .pipe($.concat('viewer_libs_no_three.js'))
-        .pipe(gulp.dest(path.join(conf.paths.dist, '/'))
-            .on('end',function(){
-                gulp.src(path.join(conf.paths.dist, 'viewer_libs_no_three.js'))
-                    .pipe($.uglify())
-                    .pipe($.concat('viewer_libs_no_three.min.js'))
-                    .pipe(gulp.dest(path.join(conf.paths.dist, '/'))
-                );
-            })
-    );
-
-});
 
 gulp.task('all', function () {
     return gulp.src(
@@ -87,7 +66,12 @@ gulp.task('all', function () {
         .pipe($.concat('imsv_libs.js'))
         .pipe(gulp.dest(path.join(conf.paths.dist, '/'))
             .on('end',function(){
-                gulp.src(path.join(conf.paths.dist, 'imsv_libs.js'))
+                gulp.src(
+                    [
+                        path.join(conf.paths.src, 'threejs/*.js'),
+                        path.join(conf.paths.src, '**/*.js')
+
+                    ])
                     .pipe($.uglify())
                     .pipe($.concat('imsv_libs.min.js'))
                     .pipe(gulp.dest(path.join(conf.paths.dist, '/'))
@@ -101,4 +85,4 @@ gulp.task('clean', function ()
     return $.del([path.join(conf.paths.dist, '/')]);
 });
 
-gulp.task('build', ['all','editor','viewer','viewer2']);
+gulp.task('build', ['all','editor','viewer']);
